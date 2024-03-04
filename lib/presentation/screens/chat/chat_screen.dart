@@ -11,10 +11,10 @@ class chat extends StatelessWidget {
             padding: EdgeInsets.all(5),
             child: CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png'),
+                  'https://s2.coinmarketcap.com/static/img/coins/64x64/10269.png'),
             ),
           ),
-          title: const Text("mi practica app movil"),
+          title: const Text("Cheems"),
           centerTitle: true,
         ),
         body: const _chatView());
@@ -32,8 +32,8 @@ class _chatView extends StatelessWidget {
       child: Column(
         children: [
           Expanded(child: Container(color: Colors.blue)),
-          const Text("mensaje 1 "),
-          const Text("hola mundito")
+          const Text("Hello"),
+          const Text("Hello 2")
         ],
       ),
     ));

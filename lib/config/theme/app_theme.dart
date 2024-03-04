@@ -14,7 +14,7 @@ class Apptheme {
 
   Apptheme({required this.selectColor})
       : assert(selectColor >= 0 && selectColor < _colorTheme.length,
-            'cuidado pasas el rango a ${_colorTheme.length - 1}');
+            'Elegir un valor entre el rango 0 y ${_colorTheme.length - 1}');
 
   ThemeData theme() => ThemeData(
       useMaterial3: true,

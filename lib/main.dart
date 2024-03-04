@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'YAS NO APP ALEJANDRA ',
+        title: 'YES NO APP ',
         debugShowCheckedModeBanner: false,
         theme: Apptheme(selectColor: 1).theme(),
         home: const chat());
