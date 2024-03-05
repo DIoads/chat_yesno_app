@@ -1,3 +1,5 @@
+import 'package:chat_yesno_app/presentation/widgets/cheems_message_bubble.dart';
+import 'package:chat_yesno_app/presentation/widgets/my_message_bubble.dart';
 import 'package:flutter/material.dart';
 
 class chat extends StatelessWidget {
@@ -22,7 +24,7 @@ class chat extends StatelessWidget {
 }
 
 class _chatView extends StatelessWidget {
-  const _chatView({super.key});
+  const _chatView();
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +33,14 @@ class _chatView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          Expanded(child: Container(color: Colors.blue)),
-          const Text("Hello"),
-          const Text("Hello 2")
+          Expanded(
+              child: ListView.builder(
+                  itemCount: 101,
+                  itemBuilder: ((context, index) {
+                    return (index % 2 == 0)
+                        ? const MyMessageBubble()
+                        : const CheemsMessageBubble();
+                  }))),
         ],
       ),
     ));
