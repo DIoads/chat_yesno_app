@@ -1,4 +1,4 @@
-import 'package:chat_yesno_app/presentation/widgets/loading_animation.dart';
+import 'package:chat_yesno_app/presentation/widgets/animations/loading_animation.dart';
 import 'package:flutter/material.dart';
 
 class CheemsMessageBubble extends StatelessWidget {
@@ -17,7 +17,7 @@ class CheemsMessageBubble extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               "Mensajes",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ),
