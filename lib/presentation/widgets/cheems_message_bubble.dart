@@ -1,3 +1,4 @@
+
 import 'package:chat_yesno_app/presentation/widgets/animations/loading_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,7 @@ class _ImageBubble extends StatelessWidget {
                     height: contextheight,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: const loading_animation(),
+                    child:  loading_animation(relativeSize: (contextheight*0.25)),
                   ),
       ),
     );
