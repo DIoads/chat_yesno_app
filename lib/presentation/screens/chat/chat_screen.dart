@@ -1,3 +1,4 @@
+import 'package:chat_yesno_app/presentation/shared/message_field_box.dart';
 import 'package:chat_yesno_app/presentation/widgets/cheems_message_bubble.dart';
 import 'package:chat_yesno_app/presentation/widgets/my_message_bubble.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class _chatView extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage("https://img.freepik.com/free-vector/abstract-blur-blue-pink-gradient-background-design_53876-136695.jpg"),
+            image: NetworkImage(
+                "https://img.freepik.com/free-vector/abstract-blur-blue-pink-gradient-background-design_53876-136695.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -48,6 +50,7 @@ class _chatView extends StatelessWidget {
                             ? const MyMessageBubble()
                             : const CheemsMessageBubble();
                       }))),
+              const MessageFieldBox(),
             ],
           ),
         ),
