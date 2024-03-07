@@ -31,12 +31,8 @@ class _chatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://img.freepik.com/free-vector/abstract-blur-blue-pink-gradient-background-design_53876-136695.jpg"),
-            fit: BoxFit.cover,
-          ),
+        decoration:  BoxDecoration(
+          color: Colors.blueGrey.shade100
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

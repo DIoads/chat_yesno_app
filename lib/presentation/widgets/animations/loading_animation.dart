@@ -6,11 +6,15 @@ class loading_animation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height*0.05;
+
+
+
     return Scaffold(
       body: Center(
         child: LoadingAnimationWidget.staggeredDotsWave(
           color: Colors.white,
-          size: 100,
+          size: size,
         ),
       ),
     );
