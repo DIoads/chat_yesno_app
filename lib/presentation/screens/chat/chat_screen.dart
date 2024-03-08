@@ -3,8 +3,8 @@ import 'package:chat_yesno_app/presentation/widgets/cheems_message_bubble.dart';
 import 'package:chat_yesno_app/presentation/widgets/my_message_bubble.dart';
 import 'package:flutter/material.dart';
 
-class chat extends StatelessWidget {
-  const chat({super.key});
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +20,18 @@ class chat extends StatelessWidget {
           title: const Text("Cheems"),
           centerTitle: true,
         ),
-        body: const _chatView());
+        body: const _ChatView());
   }
 }
 
-class _chatView extends StatelessWidget {
-  const _chatView();
+class _ChatView extends StatelessWidget {
+  const _ChatView();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration:  BoxDecoration(
-          color: Colors.blueGrey.shade100
-        ),
+        decoration: BoxDecoration(color: Colors.blueGrey.shade100),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(

@@ -1,4 +1,3 @@
-
 import 'package:chat_yesno_app/presentation/widgets/animations/loading_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -40,8 +39,6 @@ class _ImageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print("ancho ${size.width}=${size.width * 0.4}");
-    print("alto ${size.height}=${size.height * 0.2}");
     final contextwidth = size.width * 0.4;
     final contextheight = size.height * 0.2;
     return ClipRRect(
@@ -51,16 +48,16 @@ class _ImageBubble extends StatelessWidget {
         height: contextheight,
         fit: BoxFit.cover,
         'https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg',
-        loadingBuilder: (context, child, loadingProgress) =>
-            (loadingProgress == null)
-                ? child
-                : Container(
-                    width: contextwidth,
-                    height: contextheight,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child:  loading_animation(relativeSize: (contextheight*0.25)),
-                  ),
+        loadingBuilder: (context, child, loadingProgress) => (loadingProgress ==
+                null)
+            ? child
+            : Container(
+                width: contextwidth,
+                height: contextheight,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: loading_animation(relativeSize: (contextheight * 0.25)),
+              ),
       ),
     );
   }
