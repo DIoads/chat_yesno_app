@@ -1,7 +1,10 @@
+import 'package:chat_yesno_app/domain/entities/message.dart';
+import 'package:chat_yesno_app/presentation/providers/chat_provider.dart';
 import 'package:chat_yesno_app/presentation/shared/message_field_box.dart';
 import 'package:chat_yesno_app/presentation/widgets/cheems_message_bubble.dart';
 import 'package:chat_yesno_app/presentation/widgets/my_message_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -29,6 +32,8 @@ class _ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ChatProvider chatProvider = context.watch<ChatProvider>();
+
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(color: Colors.blueGrey.shade100),
@@ -38,11 +43,17 @@ class _ChatView extends StatelessWidget {
             children: [
               Expanded(
                   child: ListView.builder(
-                      itemCount: 101,
+                      itemCount: chatProvider.messageList.length,
                       itemBuilder: ((context, index) {
-                        return (index % 2 == 0)
-                            ? const MyMessageBubble()
-                            : const CheemsMessageBubble();
+                        print(chatProvider.messageList[index].text);
+
+                        return (chatProvider.messageList[index].fromWho ==
+                                FromWho.cheems)
+                            ? CheemsMessageBubble(
+                                message: chatProvider.messageList[index].text)
+                            : MyMessageBubble(
+                                message: chatProvider.messageList[index].text,
+                              );
                       }))),
               const MessageFieldBox(),
             ],
