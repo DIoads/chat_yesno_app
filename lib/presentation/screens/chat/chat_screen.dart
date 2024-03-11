@@ -27,13 +27,18 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-class _ChatView extends StatelessWidget {
+class _ChatView extends StatefulWidget {
   const _ChatView();
 
   @override
-  Widget build(BuildContext context) {
-    final ChatProvider chatProvider = context.watch<ChatProvider>();
+  State<_ChatView> createState() => _ChatViewState();
+}
 
+class _ChatViewState extends State<_ChatView> {
+  @override
+  Widget build(BuildContext context) {
+    final textController = TextEditingController();
+    final ChatProvider chatProvider = context.watch<ChatProvider>();
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(color: Colors.blueGrey.shade100),
@@ -45,8 +50,6 @@ class _ChatView extends StatelessWidget {
                   child: ListView.builder(
                       itemCount: chatProvider.messageList.length,
                       itemBuilder: ((context, index) {
-                        print(chatProvider.messageList[index].text);
-
                         return (chatProvider.messageList[index].fromWho ==
                                 FromWho.cheems)
                             ? CheemsMessageBubble(
@@ -55,11 +58,27 @@ class _ChatView extends StatelessWidget {
                                 message: chatProvider.messageList[index].text,
                               );
                       }))),
-              const MessageFieldBox(),
+              MessageFieldBox(
+                textController: textController,
+                onPress: () {
+                  addMyMessage(
+                      chatProvider: chatProvider,
+                      textController: textController);
+                },
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void addMyMessage(
+      {required ChatProvider chatProvider,
+      required TextEditingController textController}) {
+    setState(() {
+      Message message = Message(text: textController.text, fromWho: FromWho.me);
+      chatProvider.messageList.add(message);
+    });
   }
 }

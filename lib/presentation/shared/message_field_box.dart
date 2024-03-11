@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({super.key});
+  final TextEditingController textController;
+  final void Function() onPress;
+
+  const MessageFieldBox(
+      {super.key, required this.textController, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
     final focusNode = FocusNode();
 
     return TextFormField(
-        controller: textController,
-        focusNode: focusNode,
-        onTapOutside: (event) {
-          focusNode.unfocus();
-        },
-        onFieldSubmitted: (value) {
-          print('valor enviado: $value');
-          textController.clear();
-          focusNode.requestFocus();
-        },
-        decoration: _buildInputDecoration(
-            inputBorder: _outlineInputBorder(),
-            onPressed: () => _onPressed(textController: textController)));
+      controller: textController,
+      focusNode: focusNode,
+      onTapOutside: (event) {
+        focusNode.unfocus();
+      },
+      onFieldSubmitted: (value) {
+        print('valor enviado: $value');
+        textController.clear();
+        focusNode.requestFocus();
+      },
+      decoration: _buildInputDecoration(
+        inputBorder: _outlineInputBorder(),
+        onPressed: () => _onPressed(textController: textController),
+      ),
+    );
   }
 
   UnderlineInputBorder _outlineInputBorder() => const UnderlineInputBorder(
@@ -45,6 +50,7 @@ class MessageFieldBox extends StatelessWidget {
   void _onPressed({required TextEditingController textController}) {
     final textValue = textController.text;
     print('Valor de la nueva función: $textValue');
+    onPress();
     textController.clear();
   }
 }
