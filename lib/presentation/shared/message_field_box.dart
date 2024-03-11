@@ -51,6 +51,5 @@ class MessageFieldBox extends StatelessWidget {
     final textValue = textController.text;
     print('Valor de la nueva función: $textValue');
     onPress();
-    textController.clear();
   }
 }
