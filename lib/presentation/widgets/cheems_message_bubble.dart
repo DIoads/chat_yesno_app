@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class CheemsMessageBubble extends StatelessWidget {
   final String message;
-
-  const CheemsMessageBubble({super.key, required this.message});
+  final String? imageUrl;
+  const CheemsMessageBubble({super.key, required this.message, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CheemsMessageBubble extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const _ImageBubble(),
+        _ImageBubble(imageUrl),
         const SizedBox(
           height: 10,
         )
@@ -36,7 +36,8 @@ class CheemsMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble();
+  final String? imageUrl;
+  const _ImageBubble(this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _ImageBubble extends StatelessWidget {
         width: contextwidth,
         height: contextheight,
         fit: BoxFit.cover,
-        'https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg',
+        imageUrl!,
         loadingBuilder: (context, child, loadingProgress) => (loadingProgress ==
                 null)
             ? child

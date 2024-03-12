@@ -21,64 +21,44 @@ class ChatScreen extends StatelessWidget {
             ),
           ),
           title: const Text("Cheems"),
-          centerTitle: true,
+          centerTitle: false,
         ),
         body: const _ChatView());
   }
 }
 
-class _ChatView extends StatefulWidget {
-  const _ChatView();
+class _ChatView extends StatelessWidget {
+  const _ChatView({super.key});
 
-  @override
-  State<_ChatView> createState() => _ChatViewState();
-}
-
-class _ChatViewState extends State<_ChatView> {
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
     final ChatProvider chatProvider = context.watch<ChatProvider>();
     return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(color: Colors.blueGrey.shade100),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: chatProvider.messageList.length,
-                      itemBuilder: ((context, index) {
-                        return (chatProvider.messageList[index].fromWho ==
-                                FromWho.cheems)
-                            ? CheemsMessageBubble(
-                                message: chatProvider.messageList[index].text)
-                            : MyMessageBubble(
-                                message: chatProvider.messageList[index].text,
-                              );
-                      }))),
-              MessageFieldBox(
-                textController: textController,
-                onPress: () {
-                  addMyMessage(
-                      chatProvider: chatProvider,
-                      textController: textController);
-                },
-              ),
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+                child: ListView.builder(
+                    itemCount: chatProvider.messageList.length,
+                    itemBuilder: ((context, index) {
+                      return (chatProvider.messageList[index].fromWho ==
+                              FromWho.cheems)
+                          ? CheemsMessageBubble(
+                              message: chatProvider.messageList[index].text,
+                              imageUrl:
+                                  chatProvider.messageList[index].imageURL,
+                            )
+                          : MyMessageBubble(
+                              message: chatProvider.messageList[index],
+                            );
+                    }))),
+            MessageFieldBox(
+              onValue: (value) => chatProvider.sendMessage(value),
+            ),
+          ],
         ),
       ),
     );
-  }
-
-  void addMyMessage(
-      {required ChatProvider chatProvider,
-      required TextEditingController textController}) {
-    setState(() {
-      Message message = Message(text: textController.text, fromWho: FromWho.me);
-      chatProvider.messageList.add(message);
-    });
   }
 }
