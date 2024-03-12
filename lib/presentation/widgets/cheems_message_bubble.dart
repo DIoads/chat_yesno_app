@@ -1,10 +1,10 @@
+import 'package:chat_yesno_app/domain/entities/message.dart';
 import 'package:chat_yesno_app/presentation/widgets/animations/loading_animation.dart';
 import 'package:flutter/material.dart';
 
 class CheemsMessageBubble extends StatelessWidget {
-  final String message;
-  final String? imageUrl;
-  const CheemsMessageBubble({super.key, required this.message, this.imageUrl});
+  final Message message;
+  const CheemsMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CheemsMessageBubble extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              message,
+              message.text,
               style: const TextStyle(color: Colors.black),
             ),
           ),
@@ -26,7 +26,7 @@ class CheemsMessageBubble extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        _ImageBubble(imageUrl),
+        _ImageBubble(message.imageURL),
         const SizedBox(
           height: 10,
         )

@@ -28,7 +28,7 @@ class ChatScreen extends StatelessWidget {
 }
 
 class _ChatView extends StatelessWidget {
-  const _ChatView({super.key});
+  const _ChatView();
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,7 @@ class _ChatView extends StatelessWidget {
                       return (chatProvider.messageList[index].fromWho ==
                               FromWho.cheems)
                           ? CheemsMessageBubble(
-                              message: chatProvider.messageList[index].text,
-                              imageUrl:
-                                  chatProvider.messageList[index].imageURL,
-                            )
+                              message: chatProvider.messageList[index])
                           : MyMessageBubble(
                               message: chatProvider.messageList[index],
                             );
