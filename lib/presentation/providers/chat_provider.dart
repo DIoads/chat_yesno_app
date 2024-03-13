@@ -1,25 +1,31 @@
+import 'package:chat_yesno_app/config/helpers/get_yes_no_answer.dart';
 import 'package:chat_yesno_app/domain/entities/message.dart';
 import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier {
-  List<Message> messageList = [
-    Message(
-        text: "hello bro",
-        fromWho: FromWho.cheems,
-        imageURL:
-            "https://www.the-sun.com/wp-content/uploads/sites/6/2023/10/www-instagram-com-monkeycatluna-hl-851711797.jpg"),
-    Message(text: "whats up my pa", fromWho: FromWho.me),
-    Message(
-        text: "funny meme",
-        fromWho: FromWho.cheems,
-        imageURL:
-            "https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg"),
-    Message(text: "haha", fromWho: FromWho.me)
-  ];
+  final ScrollController controller = ScrollController();
+  final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
+  List<Message> messageList = [];
 
   Future<void> sendMessage(String text) async {
+    if (text.isEmpty) return;
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
+    if (text.endsWith('?')) {
+      await herReply();
+    }
     notifyListeners();
+    moveScrollToBottom();
+  }
+
+  Future<void> moveScrollToBottom() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    controller.animateTo(controller.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+  }
+
+  Future<void> herReply() async {
+    final herMessage = await getYesNoAnswer.getAnswer();
+    messageList.add(herMessage);
   }
 }

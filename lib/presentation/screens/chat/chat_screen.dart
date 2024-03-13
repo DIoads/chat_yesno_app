@@ -33,27 +33,33 @@ class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChatProvider chatProvider = context.watch<ChatProvider>();
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            Expanded(
-                child: ListView.builder(
-                    itemCount: chatProvider.messageList.length,
-                    itemBuilder: ((context, index) {
-                      return (chatProvider.messageList[index].fromWho ==
-                              FromWho.cheems)
-                          ? CheemsMessageBubble(
-                              message: chatProvider.messageList[index])
-                          : MyMessageBubble(
-                              message: chatProvider.messageList[index],
-                            );
-                    }))),
-            MessageFieldBox(
-              onValue: (value) => chatProvider.sendMessage(value),
-            ),
-          ],
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(221, 63, 113, 136),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                      controller: chatProvider.controller,
+                      itemCount: chatProvider.messageList.length,
+                      itemBuilder: ((context, index) {
+                        return (chatProvider.messageList[index].fromWho ==
+                                FromWho.cheems)
+                            ? CheemsMessageBubble(
+                                message: chatProvider.messageList[index])
+                            : MyMessageBubble(
+                                message: chatProvider.messageList[index],
+                              );
+                      }))),
+              MessageFieldBox(
+                onValue: (value) => chatProvider.sendMessage(value),
+              ),
+            ],
+          ),
         ),
       ),
     );
