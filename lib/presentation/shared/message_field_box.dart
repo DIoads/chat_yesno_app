@@ -6,8 +6,9 @@ class MessageFieldBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final focusNode = FocusNode();
     final textController = TextEditingController();
+    final focusNode = FocusNode();
+
     return TextFormField(
       controller: textController,
       focusNode: focusNode,
@@ -51,5 +52,6 @@ class MessageFieldBox extends StatelessWidget {
       required ValueChanged<String> onValue}) {
     final textValue = textController.text;
     onValue(textValue);
+    textController.clear();
   }
 }

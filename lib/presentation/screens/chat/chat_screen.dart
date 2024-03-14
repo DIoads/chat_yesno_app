@@ -33,11 +33,12 @@ class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChatProvider chatProvider = context.watch<ChatProvider>();
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(221, 63, 113, 136),
-      ),
-      child: SafeArea(
+
+    return SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(221, 63, 113, 136),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
